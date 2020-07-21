@@ -1,52 +1,47 @@
-model_run<-function(model_input = NULL)
-{
+simulatePatient <- function() {
 
-  input<-unflatten_list(model_input)
-  # replace the function below with main model function takes model inputs and returns the output.
-  # for example, for bode package we will have:
-  # results <- bode              (FEV1                   =model_input$FEV1,
-  #                               mMRC                   =model_input$mMRC,
-  #                               BMI                    =model_input$BMI,
-  #                               walk                   =model_input$walk)
-  #
-  # for cfmortality package, we will have:
-  # results <- predictcfmortality(age                    =model_input$age,
-  #                               male                   =model_input$male,
-  #                               fvc                    =model_input$fvc,
-  #                               fev1                   =model_input$fev1,
-  #                               fev1LastYear           =model_input$fev1LastYear,
-  #                               bcepacia               =model_input$bcepacia,
-  #                               underweight            =model_input$underweight,
-  #                               nHosp                  =model_input$nHosp,
-  #                               pancreaticInsufficient =model_input$pancreaticInsufficient,
-  #                               CFRelatedDiabetes      =model_input$CFRelatedDiabetes,
-  #                               ageAtDiagnosis         =model_input$ageAtDiagnosis        )
+  patient <- list()
 
-  return(as.list(results))
-}
+  coin <- runif(1, min = 0, max = 1)
+
+  if (coin >= 0.5) {
+    patient$male <- 0
+  } else {patient$male <- 1}
+
+  if (coin >= 0.258) {
+    patient$smoker <- 0
+  } else {patient$smoker <- 1}
+
+  if (coin >= 0.4685) {
+    patient$oxygen <- 0
+  } else {patient$oxygen <- 1}
+
+  if (coin >= 0.2265) {
+    patient$statin <- 0
+  } else {patient$statin <- 1}
+
+  if (coin >= 0.6504) {
+    patient$LAMA <- 0
+  } else {patient$LAMA <- 1}
+
+  if (coin >= 0.5206) {
+    patient$LABA = 0
+  } else {patient$LABA <- 1}
+
+  if (coin >= 0.5723) {
+    patient$ICS = 0
+  } else {patient$ICS <- 1}
+
+  patient$age  <- rnorm(1, mean = 64.68, sd = 8.75)
+  patient$FEV1 <- rnorm(1, mean = 40.60, sd = 15.93)
+  patient$BMI  <- rnorm(1, mean = 27.53, sd = 6.43)
+  patient$SGRQ <- rnorm(1, mean = 49.95, sd = 16.72)
+
+  patient$LastYrExacCount <- rpois (n = 1, lambda = 1.42)
+  patient$LastYrSevExacCount <- rpois (n = 1, lambda = 0.29)
 
 
-get_default_input <- function() {
-  # replace the function below with default model inputs for the new Prism model.
-  # for example, for bode package we will have:
-  # model_input <- list(FEV1                   = 40,
-  #                     mMRC                   = 3,
-  #                     BMI                    = 22,
-  #                     walk                   = 100)
-  #
-  # for cfmortality package, we will have:
-  # model_input <- list(age                    = 16,
-  #                     male                   = 0,
-  #                     fvc                    = 66.7,
-  #                     fev1                   = 47.4,
-  #                     fev1LastYear           = 80.5,
-  #                     bcepacia               = 0,
-  #                     underweight            = 0,
-  #                     nHosp                  = 0,
-  #                     pancreaticInsufficient = 1,
-  #                     CFRelatedDiabetes      = 0,
-  #                     ageAtDiagnosis         = 0.9)
-  return((flatten_list(model_input)))
+  return((flatten_list(patient)))
 }
 
 
@@ -78,7 +73,6 @@ flatten_list<-function(lst,prefix="")
   }
   return(out)
 }
-
 
 
 #Gets a hierarchical named list and flattens it; updating names accordingly
