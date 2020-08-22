@@ -32,10 +32,10 @@ model_run <- function() {
     patient$ICS = 0
   } else {patient$ICS <- 1}
 
-  patient$age  <- rnorm(1, mean = 64.68, sd = 8.75)
-  patient$FEV1 <- rnorm(1, mean = 40.60, sd = 15.93)
-  patient$BMI  <- rnorm(1, mean = 27.53, sd = 6.43)
-  patient$SGRQ <- rnorm(1, mean = 49.95, sd = 16.72)
+  patient$age  <- round(rnorm(1, mean = 64.68, sd = 8.75))
+  patient$FEV1 <- round(rnorm(1, mean = 40.60, sd = 15.93))
+  patient$BMI  <- round(rnorm(1, mean = 27.53, sd = 6.43))
+  patient$SGRQ <- round(rnorm(1, mean = 49.95, sd = 16.72))
 
   patient$LastYrExacCount <- rpois (n = 1, lambda = 1.42)
   patient$LastYrSevExacCount <- rpois (n = 1, lambda = 0.29)
