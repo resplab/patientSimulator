@@ -37,8 +37,14 @@ model_run <- function() {
   patient$BMI  <- round(rnorm(1, mean = 27.53, sd = 6.43))
   patient$SGRQ <- round(rnorm(1, mean = 49.95, sd = 16.72))
 
-  patient$LastYrExacCount <- rpois (n = 1, lambda = 1.42)
-  patient$LastYrSevExacCount <- rpois (n = 1, lambda = 0.29)
+
+  #patient$LastYrExacCount <- rpois (n = 1, lambda = 1.42)
+  #patient$LastYrSevExacCount <- rpois (n = 1, lambda = 0.29)
+
+  covar <- cbind(c(2.55, 0.87), c(0.57, 0.44))
+  exacSample <- rmvpois(10, c(1.42, 0.29), covar)[1,]
+  patient$LastYrExacCount <- exacSample[1]
+  patient$LastYrSevExacCount <- exacSample[2]
 
 
   return((flatten_list(patient)))
