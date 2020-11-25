@@ -1,6 +1,6 @@
 Package: patientsimulatorPrism
 Title: Patient Simulator for ACCEPT
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: c(
     person("Amin", "Adibi", email = "adibi@alumni.ubc.ca", role = c("aut", "cph")),
     person("Mohsen", "Sadatsafavi", email = "mohsen.sadatsafavi@ubc.ca", role = c("aut", "cre")))
