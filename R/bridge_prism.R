@@ -7,7 +7,7 @@ model_run <- function() {
   } else {patient$male <- "Male"}
 
   if (runif(1, min = 0, max = 1) >= 0.258) {
-    patient$smoker <- "Non-Smoker"
+    patient$smoker <- "Former Smoker"
   } else {patient$smoker <- "Smoker"}
 
   if (runif(1, min = 0, max = 1) >= 0.4685) {
